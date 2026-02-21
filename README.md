@@ -32,4 +32,4 @@ Intern at SkillCraft Technology
 
 
 ## Output 
-![output]([image-path-or-url](https://github.com/aishhanda/SCT_WD_1/blob/main/screencapture-127-0-0-1-5500-Task1-index-html-2026-02-21-10_23_59.png))
+![output](https://github.com/aishhanda/SCT_WD_1/blob/main/screencapture-127-0-0-1-5500-Task1-index-html-2026-02-21-10_23_59.png)
