@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technify — Premium SaaS Platform</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    
+    :root {
+      --bg: #0b1020;
+      --bg-secondary: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --primary: #38bdf8;
+      --accent: #a78bfa;
+      --glass: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.15);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-secondary: #ffffff;
+      --text: #020617;
+      --muted: #475569;
+      --primary: #2563eb;
+      --accent: #7c3aed;
+      --glass: rgba(0,0,0,0.06);
+      --border: rgba(0,0,0,0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top, var(--bg-secondary), var(--bg));
+      color: var(--text);
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+   
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: 0.4s ease;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 10%;
+      background: linear-gradient(
+        120deg,
+        rgba(56,189,248,0.3),
+        rgba(167,139,250,0.3)
+      );
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: 0.4s ease;
+    }
+
+    header.scrolled .navbar {
+      padding: 12px 10%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+   
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+    }
+
+    /* =====================
+       HAMBURGER
+    ===================== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding-left: 50px;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(7px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-7px);
+    }
+
+    
+    .mobile-nav {
+      position: fixed;
+      top: 72px;
+      right: -100%;
+      width: 100%;
+      height: calc(100vh - 72px);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      transition: right 0.4s ease;
+      z-index: 999;
+    }
+
+    .mobile-nav a {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 140px 10%;
+      display: flex;
+      align-items: center;
+    }
+
+    .content {
+      max-width: 650px;
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      section {
+        padding: 120px 7%;
+      }
+
+      .content h1 {
+        font-size: 2.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+ 
+  <header id="header">
+    <div class="navbar">
+      <div class="logo">Technify</div>
+
+      <nav>
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex; justify-content: center; align-items:center;">
+        <div class="theme-toggle" id="themeToggle">🌙</div>
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+
+  <section id="home">
+    <div class="content">
+      <h1>Build. Scale. Lead.</h1>
+      <p>
+        Technify is a modern SaaS platform engineered for teams that demand
+        performance, scalability, and elegant user experience.
+      </p>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="content">
+      <h1>Designed for Excellence</h1>
+      <p>
+        Every interaction is crafted with precision — clean UI, smooth motion,
+        and a future-proof architecture.
+      </p>
+    </div>
+  </section>
+
+  <section id="solutions">
+    <div class="content">
+      <h1>Solutions That Grow</h1>
+      <p>
+        From startups to enterprises, Technify adapts seamlessly to your needs.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="content">
+      <h1>Let’s Create Impact</h1>
+      <p>
+        Ready to build something remarkable? Let’s get started together.
+      </p>
+    </div>
+  </section>
+
+
+  <script>
+    const header = document.getElementById("header");
+    const links = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll("section");
+    const toggle = document.getElementById("themeToggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    // Scroll effects
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 60);
+
+      let current = "";
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop - 200) {
+          current = section.id;
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+
+    const setTheme = theme => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      toggle.textContent = theme === "dark" ? "🌙" : "☀️";
+    };
+
+    toggle.addEventListener("click", () => {
+      const current = localStorage.getItem("theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    setTheme(localStorage.getItem("theme") || "dark");
+
+    
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      mobileNav.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".mobile-nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+        menuToggle.classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
